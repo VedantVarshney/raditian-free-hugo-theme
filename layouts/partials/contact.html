@@ -1,4 +1,10 @@
 {{ if .Site.Data.homepage.contact.enable }}
+<script>
+    function recaptchaCallback(token) {
+        document.getElementById("submitContactFormButtom").submit();
+    }
+</script>
+<script src="https://www.google.com/recaptcha/api.js"></script>
 <section id="contact" class="section section--contact pt-0">
     <div class="container">
         <div class="contact">
@@ -24,7 +30,13 @@
                         </div>
                         <div class="row pt-4">
                             <div class="col-12">
-                                <button type="submit" class="btn btn-primary">
+                                <button 
+                                    type="submit"
+                                    id="submitContactFormButton" 
+                                    class="btn btn-primary g-recaptcha"
+                                    data-callback="recaptchaCallback"
+                                    data-sitekey="6LdCY9gdAAAAAHqjh0JRfWN_kpcclAHrJ2wCI7a4"
+                                    data-action="submit">
                                     <i class="{{ .Site.Data.homepage.contact.button.icon }}"></i>
                                     {{ .Site.Data.homepage.contact.button.btnText }}
                                 </button>
